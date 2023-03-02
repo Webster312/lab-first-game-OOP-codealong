@@ -3,10 +3,10 @@ body {
     padding: 0;
 }
 
-
 #board {
     background-color: green;
     height: 100vh;
+    position: relative;
 }
 
 #player {
@@ -15,4 +15,11 @@ body {
     height: 10vh;
     position: absolute;
     bottom: 0;
+}
+
+.obstacle {
+    width: 20vw;
+    height: 10vh;
+    background-color: orange;
+    position: absolute;
 }
