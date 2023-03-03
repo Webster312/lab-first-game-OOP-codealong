@@ -16,12 +16,12 @@ class Game {
             this.obstaclesArr.push(myObstacle);
         }, 2000);
 
-
-        //move all obstacles 
+        //move all obstacles
         setInterval( () => {
             this.obstaclesArr.forEach((obstacleInstance) => {
-                obstacleInstance.moveDown();
-                this.detectCollision(obstacleInstance);
+                obstacleInstance.moveDown(); //move
+                this.detectCollision(obstacleInstance); //detect collision between player and current obstacle
+                this.removeObstacleIfOutside(); //check if we need to remove current obstacle
             });
         }, 16);
 
@@ -42,19 +42,25 @@ class Game {
             this.player.positionY < obstacleInstance.positionY + obstacleInstance.height &&
             this.player.height + this.player.positionY > obstacleInstance.positionY
           ){
-            console.log("game over Buddy!");
-            //window.location.href = "./gameover.html";
+            //console.log("game over my fren!");
+            window.location.href = "./gameover.html";
           }
+    }
+    removeObstacleIfOutside(obstacleInstance){
+        if(obstacleInstance.positionY < 0){
+            obstacleInstance.obstacleElm.remove(); //removes obstacle from the DOM
+            this.obstaclesArr.shift(); //removes obstacle from the array
+        }
     }
 }
 
 
 class Player {
     constructor(){
-        this.positionX = 0;
-        this.positionY = 0;
         this.width = 20;
         this.height = 10;
+        this.positionX = 0;
+        this.positionY = 0;
         this.playerElm = document.getElementById("player");
 
         this.playerElm.style.width = this.width + "vw";
@@ -75,7 +81,7 @@ class Obstacle {
     constructor(){
         this.width = 20;
         this.height = 10;
-        this.positionX = 50 - (this.width/2);  
+        this.positionX = 50 - (this.width/2);
         this.positionY = 100;
         this.obstacleElm = null; //will store a dom element
 
