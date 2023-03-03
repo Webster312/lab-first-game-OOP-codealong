@@ -73,10 +73,10 @@ class Player {
 
 class Obstacle {
     constructor(){
-        this.positionX = 50;
-        this.positionY = 100;
         this.width = 20;
         this.height = 10;
+        this.positionX = 50 - (this.width/2);  
+        this.positionY = 100;
         this.obstacleElm = null; //will store a dom element
 
         this.createDomElement();
